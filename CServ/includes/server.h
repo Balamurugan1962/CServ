@@ -1,5 +1,6 @@
 #ifndef SERVER_H
 #include<sys/socket.h>
+#include <netinet/in.h>
 #define SERVER_H
 
 struct Server {
@@ -7,15 +8,19 @@ struct Server {
     int type;
     int protocol;
 
+    int interface;
 
     int port;
     int backlog;
 
-    void (*client_handler)(void);  //function pointer (handle user)
+    struct sockaddr_in addr;
+
+    void (*client_handler)(int);  //function pointer (handle user)
 };
 
-struct Server create_server(int domain, int type, int protocol, int port,int backlog,void(*launch)(void));
+struct Server create_server(int domain, int type, int protocol, int port,int interface,int backlog,void(*client_handler)(int));
 
-int start_server(struct Server server);
+int start_HTTP_server(struct Server server);
+
 
 #endif
