@@ -1,12 +1,10 @@
 #ifndef UTILS_H
 
-#include<stdio.h>
-#include<stdlib.h>
 
 #define UTILS_H
 
-void raiseError(char* messege);
+void raise_error(char* messege);
 
-void raiseSuccess(char* messege);
+void raise_success(char* messege);
 
 #endif
